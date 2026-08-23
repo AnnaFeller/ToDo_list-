@@ -1,14 +1,20 @@
-import {memo} from "react";
+import {memo, useContext, useMemo} from "react";
+import {TasksContext} from "../context/TasksContext.jsx";
 
-const ToDoInfo =(props)=>{
+const ToDoInfo =()=>{
     const {
-        total,
-        done,
-         onDeleteAllButtonClick
-    }=props;
+       tasks,
+        deleteAllTask,
+    }= useContext(TasksContext);
 
 
+    const total = tasks.length
     const hasTasks = total>0
+    const done = useMemo(()=>{ // теперь при изменениях не связанных с состоянием (ввода теста), пересчет выполненных задач не булет выполняться заново
+        return tasks.filter(({isDone}) => isDone).length
+    },[tasks])
+
+
     return(
         <div className="todo__info">
             <div className="todo__total-tasks">
@@ -18,7 +24,7 @@ const ToDoInfo =(props)=>{
                 <button
                     className="todo__delete-all-button"
                     type="button"
-                      onClick={onDeleteAllButtonClick}
+                      onClick={deleteAllTask}
                 >
                     Delete all
                 </button>

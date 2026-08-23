@@ -1,11 +1,13 @@
 import Field from "./Field.jsx";
+import {useContext} from "react";
+import {TasksContext} from "../context/TasksContext.jsx";
 
-const SearchTaskForm = (props) =>{
+const SearchTaskForm = () =>{
     const {
         setSearchQuery,
         searchQuery
 
-    }=props;
+    }=useContext(TasksContext);
     return (
         <form
             onSubmit={(event)=>event.preventDefault()} //отключает перезагрузку страници

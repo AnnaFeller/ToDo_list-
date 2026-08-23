@@ -1,47 +1,39 @@
 import ToDoItem from "./ToDoItem.jsx";
+import {memo, useContext} from "react";
+import {TasksContext} from "../context/TasksContext.jsx";
 
-const ToDoList =(props)=>{
-    const{
-        tasks=[],
-        onDeleteAllButtonClick,
-        onTaskCompleteChange,
+const ToDoList = () => {
+    const {
+        tasks,
         filteredTasks,
-        firstIncompleteTaskId,
-        firstIncompleteTaskRef
-    }=props;
+    } = useContext(TasksContext);
 
-  const hasTasks = tasks.length > 0;
-  const isEmptyFilteredTasks = filteredTasks?.length === 0;
+    const hasTasks = tasks.length > 0;
+    const isEmptyFilteredTasks = filteredTasks?.length === 0;
 
-  if(!hasTasks){
-      return <div className="todo__empty-message">There are no tasks yet</div>
-  }
+    if (!hasTasks) {
+        return <div className="todo__empty-message">There are no tasks yet</div>
+    }
 
-  if(hasTasks && isEmptyFilteredTasks){
-      return <div className="todo__empty-message">Tasks not found </div>
+    if (hasTasks && isEmptyFilteredTasks) {
+        return <div className="todo__empty-message">Tasks not found </div>
 
-  }
+    }
 
 
+    return (
+        <ul className="todo__list">
+            {(filteredTasks ?? tasks).map((task) => (
+                <ToDoItem
+                    className='todo__item'
+                    key={task.id}
+                    id={task.id}
+                    title={task.title}
+                    isDone={task.isDone}
+                />
+            ))}
 
-
-  return (
-      <ul className="todo__list">
-          {(filteredTasks?? tasks).map((task)=>(
-              <ToDoItem
-              className = 'todo__item'
-              key={task.id}
-               id={task.id}
-               title={task.title}
-            isDone={task.isDone}
-              onDeleteAllButtonClick={onDeleteAllButtonClick}
-              onTaskCompleteChange={onTaskCompleteChange}
-              ref = {task.id === firstIncompleteTaskId ? firstIncompleteTaskRef : null}
-
-              />
-          ))}
-
-      </ul>
-  )
+        </ul>
+    )
 }
 export default ToDoList
