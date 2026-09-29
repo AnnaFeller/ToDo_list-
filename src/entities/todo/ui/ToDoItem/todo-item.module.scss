@@ -1,0 +1,110 @@
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background-color: var(--color-dark-1, #18181b);
+  border: var(--border, 1px solid #27272a);
+  border-radius: var(--border-radius, 12px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-dark-2, #27272a);
+    border-color: var(--color-gray-3, #52525b);
+
+    .deleteButton {
+      opacity: 1;
+    }
+  }
+
+  &.isDisappearing {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  &.isAppearing {
+    animation: appear 0.25s ease-out forwards;
+  }
+}
+
+.checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border: 1.5px solid var(--color-gray-4, #a1a1aa);
+  border-radius: 6px;
+  background-color: transparent;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  &:checked {
+    background-color: var(--color-accent, #6366f1);
+    border-color: var(--color-accent, #6366f1);
+
+    &::after {
+      content: '';
+      width: 5px;
+      height: 9px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+  }
+}
+
+.link {
+  flex: 1;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.titleText {
+  color: var(--color-black, #ffffff);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-break: break-word;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+
+  &.isCompleted {
+    color: var(--color-gray-4, #a1a1aa);
+    text-decoration: line-through;
+  }
+}
+
+.deleteButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--color-gray-4, #a1a1aa);
+  opacity: 0.4;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--color-danger, #f43f5e);
+    background-color: rgba(244, 63, 94, 0.12);
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

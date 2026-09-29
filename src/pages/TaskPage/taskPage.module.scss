@@ -1,0 +1,122 @@
+.centerContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white, #09090b);
+  padding: 16px;
+}
+
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white, #09090b);
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--color-dark-1, #18181b);
+  border: var(--border);
+  border-radius: calc(var(--border-radius) * 1.5);
+  padding: 24px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-black, #ffffff);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+
+  &Done {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  &Pending {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--color-gray-4, #a1a1aa);
+  margin: 0;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-gray-4);
+  font-size: 0.9rem;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-gray-3);
+  border-top-color: var(--color-accent, #6366f1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorCard {
+  background-color: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  text-align: center;
+  max-width: 360px;
+}
+
+.errorTitle {
+  color: var(--color-danger, #f43f5e);
+  font-size: 1rem;
+  margin: 8px 0 4px 0;
+}
+
+.errorText {
+  color: var(--color-gray-4);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.code {
+  background-color: var(--color-dark-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
