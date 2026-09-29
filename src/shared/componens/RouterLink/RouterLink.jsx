@@ -11,6 +11,7 @@ const RouterLink = ({ to, children, onClick, ...rest }) => {
             !(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey)
         ) {
             event.preventDefault();
+
             window.history.pushState({}, '', to);
             window.dispatchEvent(new PopStateEvent('popstate'));
         }
